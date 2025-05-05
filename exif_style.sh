@@ -26,6 +26,10 @@ left="$model"
 right="${focal}  f/$aperture  $shutter\s  ISO$iso"
 copyright="$© 2025"
 
+#auto-orient
+magick "$input" -auto-orient "tmp/temp_auto.jpeg"
+input="tmp/temp_auto.jpeg"
+
 iw=`identify -format "%w" $input`
 ih=`identify -format "%h" $input`
 
@@ -57,22 +61,24 @@ lineBOff=$(($lineAOff + ($fontsize / 4)))
 
 magick -size "$iw\x$ih" xc:black -fill white  -draw "roundrectangle 0,0 $iw,$ih $rxy,$rxy" tmp/temp_mask.png
 magick "$input" tmp/temp_mask.png -alpha Off -compose CopyOpacity -composite tmp/temp_round.png
-magick tmp/temp_round.png -bordercolor white -border "$borderWidth\x$borderWidth" "tmp/temp_border.jpg"
-magick "tmp/temp_border.jpg" -size "$iw\x$borderHeight" xc:white -append tmp/temp_base.jpg
+magick tmp/temp_round.png -bordercolor white -border "$borderWidth\x$borderWidth" \
+  	-size "$iw\x$borderHeight" xc:white -append tmp/temp_base.jpg
 
 # Generate the output image with white border and text
 magick "tmp/temp_base.jpg" \
-  -pointsize "$fontsize" \
-  -font Helvetica -fill darkgrey \
-  -annotate +$textBoxWidth+$lineAOff "Shot on" \
-  -pointsize "$fontsize2" \
-  -font Helvetica-Bold -fill black \
-  -gravity NorthWest \
-  -annotate +$textBoxWidth+$lineBOff "$left" \
-  -font Helvetica -fill black \
-  -gravity NorthEast \
-  -annotate +$textBoxWidth+$lineBOff "$right" \
-  "$output"
+  	-pointsize "$fontsize" \
+  	-font Helvetica -fill darkgrey \
+  	-annotate +$textBoxWidth+$lineAOff "Shot on" \
+  	-pointsize "$fontsize2" \
+  	-font Helvetica-Bold -fill black \
+  	-gravity NorthWest \
+  	-annotate +$textBoxWidth+$lineBOff "$left" \
+  	-font Helvetica -fill black \
+  	-gravity NorthEast \
+  	-annotate +$textBoxWidth+$lineBOff "$right" \
+  	"$output"
+
+rm -r tmp/
 
 
 
