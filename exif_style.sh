@@ -10,7 +10,7 @@ base=$(basename "$input")
 name="${base%.*}"
 
 # Output file
-output="O_${name}.jpeg"
+output="output/O_${name}.jpeg"
 
 # Extract EXIF data
 model=$(exiftool -s3 -Model "$input")
