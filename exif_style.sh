@@ -3,6 +3,8 @@
 # Input image (passed as first argument)
 input="$1"
 
+mkdir tmp
+
 # Get the filename without extension
 base=$(basename "$input")
 name="${base%.*}"
@@ -53,13 +55,13 @@ textBoxWidth=$(($borderWidth+$borderWidth/5))
 lineAOff=$(($textBoxHeight+ ($borderWidth * 3 / 5)))
 lineBOff=$(($lineAOff + ($fontsize / 4)))
 
-magick -size "$iw\x$ih" xc:black -fill white  -draw "roundrectangle 0,0 $iw,$ih $rxy,$rxy" temp_mask.png
-magick "$input" temp_mask.png -alpha Off -compose CopyOpacity -composite temp_round.png
-magick temp_round.png -bordercolor white -border "$borderWidth\x$borderWidth" "temp_border.jpg"
-magick "temp_border.jpg" -size "$iw\x$borderHeight" xc:white -append temp_base.jpg
+magick -size "$iw\x$ih" xc:black -fill white  -draw "roundrectangle 0,0 $iw,$ih $rxy,$rxy" tmp/temp_mask.png
+magick "$input" tmp/temp_mask.png -alpha Off -compose CopyOpacity -composite tmp/temp_round.png
+magick tmp/temp_round.png -bordercolor white -border "$borderWidth\x$borderWidth" "tmp/temp_border.jpg"
+magick "tmp/temp_border.jpg" -size "$iw\x$borderHeight" xc:white -append tmp/temp_base.jpg
 
 # Generate the output image with white border and text
-magick "temp_base.jpg" \
+magick "tmp/temp_base.jpg" \
   -pointsize "$fontsize" \
   -font Helvetica -fill darkgrey \
   -annotate +$textBoxWidth+$lineAOff "Shot on" \
