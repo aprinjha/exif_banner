@@ -1,0 +1,30 @@
+format:
+  default:
+    font: "Helvetica"
+    fontBold: "Helvetica-Bold"
+    lineAfill: "darkgrey"
+    lineBfill: "black"    
+
+personal:
+  default:
+    handle: "@aryanprinjha"
+    copyright:
+      year: "2025"
+
+camera:
+  default:
+    manual: "no"
+
+  SonyA6700wSigma18_50mmF2_8:
+    model: "Sony α6700"
+    lens: "Sigma 18-50mm"
+    manual: "no"
+
+  SonyA6700wTTArtisan35mmF1_4:
+    model: "Sony α6700"
+    lens: "TT Artisan 35mm"
+    manual: "yes"
+    focal: "35mm"
+    shutter: ""
+
+    
