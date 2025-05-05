@@ -1,4 +1,4 @@
-# Utility to add Clean and Bold EXIF Banner to Images
+# Create clean metadata overlays for your favorite images. Support for Landscape/Portrait mode, as well as Camera Profiles/Manual Lenses, and AutoInvert
 
 ## Banner Generation
 ### Horizontal
