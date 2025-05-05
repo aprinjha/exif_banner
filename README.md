@@ -1,4 +1,6 @@
-# Create clean metadata overlays for your favorite images. Support for Landscape/Portrait mode, as well as Camera Profiles/Manual Lenses, and AutoInvert
+# Description 
+Create clean metadata overlays for your favorite images. 
+Support for Landscape/Portrait mode, Camera,Brand, and Formatting Profiles, Manual Lenses, and AutoInvert (For iPhone)
 
 ## Banner Generation
 ### Horizontal
