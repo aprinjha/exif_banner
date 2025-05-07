@@ -137,7 +137,7 @@ if [ "$(yq ".format.${format}" "$config")" != "null" ]; then
 	lineAfill=$(yq ".format.${format}.lineAfill" "$config")
 	lineBfill=$(yq ".format.${format}.lineBfill" "$config")
 else
-	printf "${RED}ERR: Unknown Formtting Profile supplied -f $format${NORMAL}\n"
+	printf "${RED}ERR: Unknown Formatting Profile supplied -f $format${NORMAL}\n"
 	usage
 fi
 
