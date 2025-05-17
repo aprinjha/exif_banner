@@ -17,6 +17,7 @@ ${YELLOW}Optional
 \t-l <int>    Log Output Print, default 1
 \t-p <string> Personal Profile, default if not supplied
 \t-c <string> Camera Profile  , default if not supplied
+\t-f <string> Format Profile  , default if not supplied
 \t-m <string> Manual Aperture , skipped if not provided and profile.manual=yes
 \t-o <int>    Auto Orientation, default 0${NORMAL}"
 1>&2; exit 1; }
@@ -56,7 +57,7 @@ while getopts ":l:i:p:c:m:o:f:" opt; do
 		logOut "Loaded Formatting Profile $format"
 		;;
 	m)
-		aperture="f/${OPTARG}  "
+		aperture="ƒ/${OPTARG}  "
 		logOut "Manual Aperture $aperture"
 		;;
 	o) 
@@ -100,7 +101,7 @@ if [ "$camera" == "default" ]; then
 	model=$(exiftool -s3 -Model "$input")
 	description=$(exiftool -s3 -ImageDescription "$input")
 	iso=$(exiftool -s3 -ISO "$input")
-	aperture="f/$(exiftool -s3 -FNumber "$input")  "
+	aperture="ƒ/$(exiftool -s3 -FNumber "$input")  "
 	shutter=$(exiftool -s3 -ExposureTime "$input")
 	focal=$(exiftool -s3 -FocalLength "$input" | sed 's/ //g')
 	lens=$(exiftool -s3 -LensID "$input")
